@@ -1,0 +1,5 @@
+---
+# tasks file for ssh-hardening
+- import_tasks: ssh-hardening.yml
+  become: true
+

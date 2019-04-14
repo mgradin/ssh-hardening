@@ -1,0 +1,19 @@
+---
+- lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
+  notify: restart_sshd
+
+- lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^MaxAuthTries'
+    line: 'MaxAuthTries 1'
+  notify: restart_sshd
+
+- lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^AllowUsers'
+    line: AllowUsers {{ lookup('env','USER') }}
+  notify: restart_sshd
+
